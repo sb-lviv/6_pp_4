@@ -5,9 +5,14 @@ const bodyParser = require('body-parser');
 const printf = require('printf');
 const mongoose = require('mongoose');
 
-const web = require('./class/web.js')();
+const web = require('./class/router.js');
+
+/* Mongoose */
+
+mongoose.connect('mongodb://localhost/pp3', {useNewUrlParser: true});
 
 
+/* Express */
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -25,6 +30,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(web);
+app.use(web(mongoose));
 
 app.listen(PORT, _ => console.log(`http://localhost:${PORT}`));

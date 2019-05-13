@@ -13,9 +13,14 @@ module.exports = function(mongoose) {
     return Teacher.find().exec();
   }
 
+  function find(info) {
+    return Teacher.find(info).exec();
+  }
+
   return {
     create,
     find_all,
+    find,
     class: Teacher,
   };
 }

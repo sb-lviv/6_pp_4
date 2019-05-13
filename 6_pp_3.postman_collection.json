@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "463620a9-c4c6-4b09-b8a1-c565b37118b2",
+		"name": "6_pp_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Teacher",
+			"description": "",
+			"item": [
+				{
+					"name": "Create",
+					"description": "",
+					"item": [
+						{
+							"name": "Create a teacher",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4adf87df-4675-4113-84bf-ac90385dbd9f",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "71ba60e7-f500-45f7-8fae-e1d49226df58",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    var name = pm.iterationData.get(\"name\");",
+											"    pm.expect(jsonData.name).to.eql(name);",
+											"});",
+											"",
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{name}}",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}:{{port}}/teacher",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"teacher"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Test",
+					"description": "",
+					"item": [
+						{
+							"name": "Get all teachers",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1cc3a29d-f092-43c9-b376-2605602e610c",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "johan",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}:{{port}}/teachers",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"teachers"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d676cb86-eb93-4955-8539-6ac292f41430",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6fbd5fc3-57e9-4d55-8e61-38e0bdd4f408",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8c82328c-a48d-4c7b-9285-7e0f97180e10",
+			"key": "host",
+			"value": "localhost",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "05e657de-7a17-4f01-b35e-70be88a05319",
+			"key": "port",
+			"value": "8080",
+			"type": "string",
+			"description": ""
+		}
+	]
+}
