@@ -3,10 +3,9 @@ const PORT = process.env.PORT || 8080;
 const app = require('express')();
 const bodyParser = require('body-parser');
 const printf = require('printf');
+const mongoose = require('mongoose');
 
-let group = require('./model/group.js');
-let device = require('./model/device.js');
-let logs = require('./model/logs.js');
+const web = require('./class/web.js')();
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,5 +24,7 @@ app.use((req, res, next) => {
   ));
   next();
 });
+
+app.use(web);
 
 app.listen(PORT, _ => console.log(`http://localhost:${PORT}`));
