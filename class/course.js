@@ -1,21 +1,28 @@
 
 module.exports = function(mongoose, Teacher) {
   const Schema = new mongoose.Schema({
-    name: String,
-    teacher: mongoose.Schema.Types.ObjectId,
+    name: {
+      type: String,
+      required: [true, 'is required'],
+    },
+    teacher: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: [true, 'is required'],
+      validate: async function(_id) {
+        let teachers = await Teacher.find({_id});
+        if (!teachers[0])
+          throw new Error(`There is no teacher with id ${_id}`);
+      },
+    },
   });
   const Course = mongoose.model('Course', Schema);
 
   async function create(course) {
-    let errors = [];
-    let teachers = await Teacher.find({_id: course.teacher});
-    if (!teachers || !teachers[0]) {
-      return {
-        error: `Teacher with id ${course.teacher} not found`,
-        status: 404,
-      };
-    }
-    return Course.create(course);
+    return Course.create(course)
+      .catch(e => {
+        if (!e.errors) throw e;
+        return {error: e.message};
+      });
   }
 
   async function find_all() {

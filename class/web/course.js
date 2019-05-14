@@ -5,13 +5,14 @@ module.exports = function(Course) {
 
   router.post('/', async (req, res) => {
     let response = await Course.create(req.body);
-    console.log({response});
     if (response.status) {
       res.status(response.status);
+    } else if (response.error) {
+      res.status(400);
     } else {
       res.status(201);
     }
-    res.json(response);
+    res.send(response);
   });
 
   router.get('/', async (req, res) => {
@@ -20,16 +21,11 @@ module.exports = function(Course) {
   });
 
   router.get('/:id', async (req, res) => {
-    Course.find({_id: req.params.id})
-    .then(response => {
-      if (!response[0]) {
-        res.status(404).send({});
-      }
-      res.send(response[0]);
-    })
-    .catch(e => {
-      res.status(400).send({message: e.message});
-    });
+    let courses = await Course.find({_id: req.params.id});
+    if (!courses[0]) {
+      res.status(404).send({});
+    }
+    res.send(courses[0]);
   });
 
   return router;
