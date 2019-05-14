@@ -1,15 +1,39 @@
 
+function toArray(object) {
+  if (object instanceof Array) return object;
+  else return [object];
+}
+
 module.exports = function(mongoose, Course) {
   const Schema = new mongoose.Schema({
-    name: String,
-    courses: [mongoose.Schema.Types.ObjectId],
+    name: {
+      type: String,
+      required: [true, 'is required'],
+    },
+    courses: {
+      type: [mongoose.Schema.Types.ObjectId],
+      required: false,
+      validate: {
+        validator: async function([...ids]) {
+          let courses = await Course.find({_id: {$in: ids}});
+          for (let {_id} of courses) {
+            ids.splice(ids.indexOf(_id), 1);
+          }
+          if (ids.length > 0)
+            throw new Error(`There are no courses with ids ${ids.join()}`);
+        },
+        message: props => props.reason.message,
+      },
+    },
   });
   const Student = mongoose.model('Student', Schema);
-  const ObjectId = mongoose.Types.ObjectId;
 
   async function create(student) {
-    delete student.courses;
-    return Student.create(student);
+    return Student.create(student)
+      .catch(e => {
+        if (!e.errors) throw e;
+        return {error: e.message};
+      });
   }
 
   async function find_all() {
@@ -20,22 +44,18 @@ module.exports = function(mongoose, Course) {
     return Student.find(info).exec();
   }
 
-  async function attend_course(student_id, course_id) {
-    let courses = await Course.find({_id: course_id});
-    if (!courses || !courses[0]) {
-      return {
-        error: `Course with id ${course_id} not found`,
-        status: 404,
-      };
-    }
+  async function attend_course(student_id, course_ids) {
     let student = await Student.findOne({_id: student_id});
     if (!student || !student._id) {
       return {
-        error: `Student with id ${student_id} not found`,
-        status: 404,
+        error: `There is no student with id ${student_id}`,
       };
     }
-    return Student.updateOne({_id: student_id}, {$addToSet: {courses: (course_id)}});
+    return Student.updateOne(
+        {_id: student_id},
+        {$addToSet: {courses: {$each: toArray(course_ids)}}},
+        {runValidators: true},
+    );
   }
 
   return {

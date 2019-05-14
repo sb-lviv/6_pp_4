@@ -5,13 +5,14 @@ module.exports = function(Student) {
 
   router.post('/', async (req, res) => {
     let response = await Student.create(req.body);
-    console.log({response});
     if (response.status) {
       res.status(response.status);
+    } else if (response.error) {
+      res.status(400);
     } else {
       res.status(201);
     }
-    res.json(response);
+    res.send(response);
   });
 
   router.get('/', async (req, res) => {
