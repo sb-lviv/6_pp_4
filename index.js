@@ -11,7 +11,6 @@ const mongoose = require('mongoose');
 const web = require('./class/router.js');
 
 /* Mongoose */
-console.log({MONGO_CREDS, MONGO, DB});
 mongoose.connect(`mongodb://${MONGO_CREDS}${MONGO}/${DB}`,
                  {useNewUrlParser: true});
 
