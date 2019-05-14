@@ -490,6 +490,139 @@
 					"_postman_isSubFolder": true
 				}
 			]
+		},
+		{
+			"name": "Archive",
+			"description": null,
+			"item": [
+				{
+					"name": "Init",
+					"description": null,
+					"item": [
+						{
+							"name": "Create archive record",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1cc3a29d-f092-43c9-b376-2605602e610c",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "a9ea33aa-5aff-4062-94b8-35de5310cb8c",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Americo",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "teacher",
+											"value": "5cdac0b02af60c092bf435c5",
+											"description": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}:{{port}}/student",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"student"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Test",
+					"description": "",
+					"item": [
+						{
+							"name": "Get all archive records",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1cc3a29d-f092-43c9-b376-2605602e610c",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "23340a89-5953-41a4-ad04-0af46d3d2607",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "johan",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}:{{port}}/student",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"student"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
 		}
 	],
 	"event": [
@@ -516,14 +649,14 @@
 	],
 	"variable": [
 		{
-			"id": "abc11570-fb53-42f4-97f7-17f7cd83f9dd",
+			"id": "69bb6abd-8575-46b6-a343-677b8843ce61",
 			"key": "host",
 			"value": "localhost",
 			"type": "string",
 			"description": ""
 		},
 		{
-			"id": "6b2f710a-eacf-47b9-a38a-93e45286a59b",
+			"id": "6a525833-07ac-4fae-b66c-86600c28e563",
 			"key": "port",
 			"value": "8080",
 			"type": "string",
