@@ -1,12 +1,19 @@
 
 module.exports = function(mongoose) {
   const Schema = new mongoose.Schema({
-    name: String,
+    name: {
+      type: String,
+      required: [true, 'is required'],
+    },
   });
   const Teacher = mongoose.model('Teacher', Schema);
 
   async function create(teacher) {
-    return Teacher.create(teacher);
+    return Teacher.create(teacher)
+      .catch(e => {
+        if (!e.errors) throw e;
+        return {error: e.message};
+      });
   }
 
   async function find_all() {
