@@ -5,15 +5,15 @@ module.exports = function(mongoose) {
   });
   const Teacher = mongoose.model('Teacher', Schema);
 
-  function create(teacher) {
+  async function create(teacher) {
     return Teacher.create(teacher);
   }
 
-  function find_all() {
+  async function find_all() {
     return Teacher.find().exec();
   }
 
-  function find(info) {
+  async function find(info) {
     return Teacher.find(info).exec();
   }
 

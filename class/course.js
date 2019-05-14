@@ -6,7 +6,7 @@ module.exports = function(mongoose, Teacher) {
   });
   const Course = mongoose.model('Course', Schema);
 
-  function create(course) {
+  async function create(course) {
     let errors = [];
     let teachers = await Teacher.find({_id: course.teacher});
     if (!teachers || !teachers[0]) {
@@ -18,11 +18,11 @@ module.exports = function(mongoose, Teacher) {
     return Course.create(course);
   }
 
-  function find_all() {
+  async function find_all() {
     return Course.find().exec();
   }
 
-  function find(info) {
+  async function find(info) {
     return Course.find(info).exec();
   }
 
