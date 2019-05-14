@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 const PORT = process.env.PORT || 8080;
+const MONGO = process.env.MONGO || 'localhost';
+const MONGO_CREDS = process.env.MONGO_CREDS || '';
+const DB = process.env.DATABASE || 'pp3';
 const app = require('express')();
 const bodyParser = require('body-parser');
 const printf = require('printf');
@@ -8,8 +11,9 @@ const mongoose = require('mongoose');
 const web = require('./class/router.js');
 
 /* Mongoose */
-
-mongoose.connect('mongodb://localhost/pp3', {useNewUrlParser: true});
+console.log({MONGO_CREDS, MONGO, DB});
+mongoose.connect(`mongodb://${MONGO_CREDS}${MONGO}/${DB}`,
+                 {useNewUrlParser: true});
 
 
 /* Express */
