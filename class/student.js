@@ -59,6 +59,14 @@ module.exports = function(mongoose, Course) {
     );
   }
 
+  async function get_courses(_id) {
+    let [{courses}] = await Student.aggregate([
+      {$match: {_id}},
+      {$project: {courses: 1}},
+    ]);
+    return courses;
+  }
+
   return {
     create,
     find_all,
