@@ -21,11 +21,12 @@ module.exports = function(Teacher) {
   });
 
   router.get('/:id', async (req, res) => {
-    let teachers = await Teacher.find({_id: req.params.id})
-    if (!teachers[0]) {
+    let [teacher] = await Teacher.find({_id: req.params.id})
+    if (!teacher) {
       res.status(404).send({});
+    } else {
+      res.send(teacher);
     }
-    res.send(teachers[0]);
   });
 
   return router;

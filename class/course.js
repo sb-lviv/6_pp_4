@@ -9,8 +9,8 @@ module.exports = function(mongoose, Teacher) {
       type: mongoose.Schema.Types.ObjectId,
       required: [true, 'is required'],
       validate: async function(_id) {
-        let teachers = await Teacher.find({_id});
-        if (!teachers[0])
+        let [teacher] = await Teacher.find({_id});
+        if (!teacher)
           throw new Error(`There is no teacher with id ${_id}`);
       },
     },

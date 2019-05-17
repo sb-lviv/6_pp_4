@@ -4,19 +4,15 @@ const router = require('express').Router();
 module.exports = function(Archive) {
 
   router.post('/', async (req, res) => {
-    Archive.create(req.body)
-    .then(response => {
-      console.log({response});
-      if (response.status) {
-        res.status(response.status);
-      } else {
-        res.status(201);
-      }
-      res.json(response);
-    })
-    .catch(e => {
-      res.status(400).json({error: e.message});
-    });
+    let response = await Archive.create(req.body);
+    if (response.status) {
+      res.status(response.status);
+    } else if (response.error) {
+      res.status(400);
+    } else {
+      res.status(201);
+    }
+    res.send(response);
   });
 
   router.get('/', async (req, res) => {
@@ -25,16 +21,12 @@ module.exports = function(Archive) {
   });
 
   router.get('/:id', async (req, res) => {
-    Archive.find({_id: req.params.id})
-    .then(response => {
-      if (!response[0]) {
-        res.status(404).send({});
-      }
-      res.send(response[0]);
-    })
-    .catch(e => {
-      res.status(400).send({message: e.message});
-    });
+    let [record] = await Archive.find({_id: req.params.id});
+    if (!record) {
+      res.status(404).send({});
+    } else {
+      res.send(record);
+    }
   });
 
   return router;

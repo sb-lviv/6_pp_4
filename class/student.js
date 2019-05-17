@@ -49,6 +49,7 @@ module.exports = function(mongoose, Course) {
     if (!student || !student._id) {
       return {
         error: `There is no student with id ${student_id}`,
+        status: 404,
       };
     }
     return Student.updateOne(

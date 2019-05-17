@@ -21,29 +21,24 @@ module.exports = function(Student) {
   });
 
   router.get('/:id', async (req, res) => {
-    Student.find({_id: req.params.id})
-    .then(response => {
-      if (!response[0]) {
-        res.status(404).send({});
-      }
-      res.send(response[0]);
-    })
-    .catch(e => {
-      res.status(400).send({message: e.message});
-    });
+    let [student] = await Student.find({_id: req.params.id});
+    if (!student) {
+      res.status(404).send({});
+    } else {
+      res.send(student);
+    }
   });
 
-  router.post('/:id/attend', async (req, res) => {
-    Student.attend_course(req.params.id, req.body.course_id)
-    .then(response => {
-      if (response.status) {
-        res.status(response.status);
-      }
-      res.json(response);
-    })
-    .catch(e => {
-      res.status(400).send({message: e.message});
-    });
+  router.post('/:id/course', async (req, res) => {
+    let response = await Student.attend_course(req.params.id, req.body.course_id);
+    if (response.status) {
+      res.status(response.status);
+    } else if (response.error) {
+      res.status(400);
+    } else {
+      res.status(200);
+    }
+    res.json(response);
   });
 
   return router;
