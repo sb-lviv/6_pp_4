@@ -36,12 +36,33 @@ module.exports = function(mongoose, Teacher, Course, Student) {
   const Archive = mongoose.model('Archive', Schema);
   const ObjectId = mongoose.Types.ObjectId;
 
-  async function create(record) {
-    return Archive.create(record)
-      .catch(e => {
-        if (!e.errors) throw e;
-        return {error: e.message};
-      });
+  async function create(info) {
+    let record = new Archive(info);
+    try {
+      await record.validate();
+    } catch(e) {
+      if (!e.errors) throw e;
+      return {error: e.message};
+    }
+
+    let [[student], [course]] = await Promise.all([
+      Student.find({_id: record.student}),
+      Course.find({_id: record.course}),
+    ]);
+
+    if (!student.courses.find(id => id.toString() === record.course.toString())) {
+      return {
+        error: `Student ${record.student} does not attend Course ${record.course}`,
+      };
+    }
+
+    if (course.teacher.toString() != record.teacher.toString()) {
+      return {
+        error: `Teacher ${record.teacher} does not lead Course ${record.course}`,
+      };
+    }
+
+    return record.save({ validateBeforeSave: false });
   }
 
   async function find_all() {

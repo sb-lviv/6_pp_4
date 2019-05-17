@@ -517,16 +517,26 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "name",
-											"value": "Americo",
-											"type": "text",
-											"disabled": true
+											"key": "grade",
+											"value": "1337",
+											"type": "text"
+										},
+										{
+											"key": "student",
+											"value": "5cdacc842633872fc8ac6bac",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "course",
+											"value": "5cdac1cd7179ac0d9184d989",
+											"description": "",
+											"type": "text"
 										},
 										{
 											"key": "teacher",
 											"value": "5cdac0b02af60c092bf435c5",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										}
 									]
 								},
