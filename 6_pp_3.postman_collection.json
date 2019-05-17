@@ -1,17 +1,17 @@
 {
 	"info": {
-		"_postman_id": "463620a9-c4c6-4b09-b8a1-c565b37118b2",
+		"_postman_id": "678cefa4-7cc1-453e-9799-eb7e00d95b81",
 		"name": "6_pp_3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Teacher",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Init",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "Create a teacher",
@@ -60,7 +60,6 @@
 										{
 											"key": "name",
 											"value": "{{name}}",
-											"description": "",
 											"type": "text"
 										}
 									]
@@ -105,7 +104,7 @@
 				},
 				{
 					"name": "Test",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "Get all teachers",
@@ -142,25 +141,18 @@
 										{
 											"key": "name",
 											"value": "johan",
-											"description": "",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{host}}:{{port}}/teacher?id=5cd98bf392c91d476b4da366",
+									"raw": "{{host}}:{{port}}/teacher",
 									"host": [
 										"{{host}}"
 									],
 									"port": "{{port}}",
 									"path": [
 										"teacher"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "5cd98bf392c91d476b4da366"
-										}
 									]
 								}
 							},
@@ -214,13 +206,11 @@
 										{
 											"key": "name",
 											"value": "phys",
-											"description": "",
 											"type": "text"
 										},
 										{
 											"key": "teacher",
 											"value": "5cdac0b12af60c092bf435cb",
-											"description": "",
 											"type": "text"
 										}
 									]
@@ -243,7 +233,7 @@
 				},
 				{
 					"name": "Test",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "Get all courses",
@@ -280,7 +270,6 @@
 										{
 											"key": "name",
 											"value": "johan",
-											"description": "",
 											"type": "text"
 										}
 									]
@@ -346,13 +335,11 @@
 										{
 											"key": "name",
 											"value": "Americo",
-											"description": "",
 											"type": "text"
 										},
 										{
 											"key": "teacher",
 											"value": "5cdac0b02af60c092bf435c5",
-											"description": "",
 											"type": "text",
 											"disabled": true
 										}
@@ -406,13 +393,12 @@
 										{
 											"key": "course_id",
 											"value": "5cdacc359a3f4e2e8bb570f8",
-											"description": "",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{host}}:{{port}}/student/5cdacc359a3f4e2e8bb570f8/attend",
+									"raw": "{{host}}:{{port}}/student/5cdacc359a3f4e2e8bb570f8/course",
 									"host": [
 										"{{host}}"
 									],
@@ -420,7 +406,7 @@
 									"path": [
 										"student",
 										"5cdacc359a3f4e2e8bb570f8",
-										"attend"
+										"course"
 									]
 								}
 							},
@@ -431,7 +417,7 @@
 				},
 				{
 					"name": "Test",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "Get all students",
@@ -468,7 +454,6 @@
 										{
 											"key": "name",
 											"value": "johan",
-											"description": "",
 											"type": "text"
 										}
 									]
@@ -534,26 +519,25 @@
 										{
 											"key": "name",
 											"value": "Americo",
-											"description": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "teacher",
 											"value": "5cdac0b02af60c092bf435c5",
-											"description": "",
 											"type": "text",
 											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{host}}:{{port}}/student",
+									"raw": "{{host}}:{{port}}/archive",
 									"host": [
 										"{{host}}"
 									],
 									"port": "{{port}}",
 									"path": [
-										"student"
+										"archive"
 									]
 								}
 							},
@@ -564,7 +548,7 @@
 				},
 				{
 					"name": "Test",
-					"description": "",
+					"description": null,
 					"item": [
 						{
 							"name": "Get all archive records",
@@ -601,19 +585,18 @@
 										{
 											"key": "name",
 											"value": "johan",
-											"description": "",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{host}}:{{port}}/student",
+									"raw": "{{host}}:{{port}}/archive",
 									"host": [
 										"{{host}}"
 									],
 									"port": "{{port}}",
 									"path": [
-										"student"
+										"archive"
 									]
 								}
 							},
