@@ -1,5 +1,5 @@
 
-module.exports = function(mongoose, Teacher) {
+module.exports = function(mongoose) {
   const Schema = new mongoose.Schema({
     name: {
       type: String,
@@ -8,11 +8,6 @@ module.exports = function(mongoose, Teacher) {
     teacher: {
       type: mongoose.Schema.Types.ObjectId,
       required: [true, 'is required'],
-      validate: async function(_id) {
-        let [teacher] = await Teacher.find({_id});
-        if (!teacher)
-          throw new Error(`There is no teacher with id ${_id}`);
-      },
     },
   });
   const Course = mongoose.model('Course', Schema);

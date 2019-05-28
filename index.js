@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const PORT = process.env.PORT || 8080;
+const CONFIG = require('./config.js');
+const PORT = process.env.PORT || CONFIG.PORT[process.env.SERVICE];
 const MONGO = process.env.MONGO || 'localhost';
 const MONGO_CREDS = process.env.MONGO_CREDS || '';
 const DB = process.env.DATABASE || 'pp3';

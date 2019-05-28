@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start:teacher": "SERVICE=TEACHER node index.js",
+    "start:course": "SERVICE=COURSE  node index.js",
+    "start:student": "SERVICE=STUDENT node index.js",
+    "start:archive": "SERVICE=ARCHIVE node index.js",
+    "start:web": "SERVICE=WEB node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.5.7",
-    "printf": "^0.5.1"
+    "printf": "^0.5.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7"
   }
 }
