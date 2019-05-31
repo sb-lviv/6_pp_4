@@ -18,13 +18,13 @@ module.exports = function(mongoose) {
   });
 
   router.get('/teacher', async (req, res) => {
-    request.post({url: TEACHER, resolveWithFullResponse: true})
+    request.get({url: TEACHER, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
 
   router.get('/teacher/:id', async (req, res) => {
-    request.post({url: `${TEACHER}/${req.params.id}`, resolveWithFullResponse: true})
+    request.get({url: `${TEACHER}/${req.params.id}`, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
@@ -39,13 +39,13 @@ module.exports = function(mongoose) {
   });
 
   router.get('/course', async (req, res) => {
-    request.post({url: COURSE, resolveWithFullResponse: true})
+    request.get({url: COURSE, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
 
   router.get('/course/:id', async (req, res) => {
-    request.post({url: `${COURSE}/${req.params.id}`, resolveWithFullResponse: true})
+    request.get({url: `${COURSE}/${req.params.id}`, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
@@ -60,13 +60,13 @@ module.exports = function(mongoose) {
   });
 
   router.get('/student', async (req, res) => {
-    request.post({url: STUDENT, resolveWithFullResponse: true})
+    request.get({url: STUDENT, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
 
   router.get('/student/:id', async (req, res) => {
-    request.post({url: `${STUDENT}/${req.params.id}`, resolveWithFullResponse: true})
+    request.get({url: `${STUDENT}/${req.params.id}`, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
@@ -81,13 +81,13 @@ module.exports = function(mongoose) {
   });
 
   router.get('/archive', async (req, res) => {
-    request.post({url: ARCHIVE, resolveWithFullResponse: true})
+    request.get({url: ARCHIVE, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
 
   router.get('/archive/:id', async (req, res) => {
-    request.post({url: `${ARCHIVE}/${req.params.id}`, resolveWithFullResponse: true})
+    request.get({url: `${ARCHIVE}/${req.params.id}`, resolveWithFullResponse: true})
     .then(r => res.set(r.headers).status(r.statusCode).send(r.body))
     .catch(r => res.set(r.response.headers).status(r.statusCode).send(r.error));
   });
